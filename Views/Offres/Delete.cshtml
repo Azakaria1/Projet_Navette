@@ -1,0 +1,120 @@
+﻿@model Projet_Navette.Models.Offre
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Offre</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.heure_Depart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.heure_Depart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.heure_Arrivee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.heure_Arrivee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prix)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prix)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_Depart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_Depart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_Arrivee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_Arrivee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nb_Abonnes_Voulus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nb_Abonnes_Voulus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nb_Abonnes_Atteints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nb_Abonnes_Atteints)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Autocar.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autocar.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Societe.num_patente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Societe.num_patente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville.nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville1.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville1.nom)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Projet_Navette.Models.Offre>
+
+@{
+    ViewBag.Title = "Offres";
+}
+
+<h2>Liste des offres</h2>
+
+<p>
+</p>
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Société</th>
+        <th>Offre</th>
+        <th>
+            Prix
+        </th>
+
+        <th>
+            Publiée le
+        </th>
+        <th>
+            Ville Départ
+        </th>
+        <th>
+            Ville Arrivée
+        </th>
+        <th>
+            Abonnés Voulus
+        </th>
+        <th>
+            Abonnés Atteints
+        </th>
+        <th>Action</th>
+    </tr>
+    @{
+        int cmpt = 0;
+    }
+
+    @foreach (var item in Model)
+    {
+        cmpt++;
+        <tr>
+            <td>@cmpt</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Societe.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prix)
+            </td>
+            <td>
+                @item.date_Offre.ToString("dd/MM/yyyy")
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Ville1.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ville.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nb_Abonnes_Voulus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nb_Abonnes_Atteints)
+            </td>
+            <td>
+                @Html.ActionLink("Détails", "Details", new { id = item.id_Offre }) |
+                @Html.ActionLink("S'abonner", "abonner", new { id = item.id_Offre })|
+                @Html.ActionLink("Se désabonner", "desabonner", new { id = item.id_Offre })
+
+            </td>
+        </tr>
+    }
+
+</table>

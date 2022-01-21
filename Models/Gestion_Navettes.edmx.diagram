@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ee774164e01940c6a6581d4608625fbd" Name="Diagram1">
+        <EntityTypeShape EntityType="Gestion_NavettesModel.Admin" Width="1.5" PointX="2.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Gestion_NavettesModel.Autocar" Width="1.5" PointX="3.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Gestion_NavettesModel.Client" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Gestion_NavettesModel.DemandeAbonnement" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Gestion_NavettesModel.LigneAbonnement" Width="1.5" PointX="8.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Gestion_NavettesModel.LigneDemande" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Gestion_NavettesModel.Offre" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Gestion_NavettesModel.Societe" Width="1.5" PointX="1.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Gestion_NavettesModel.Ville" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="Gestion_NavettesModel.FK_Autocar_Offre" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_NavettesModel.FK_Autocar_Societe" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_NavettesModel.FK_Client_Ligne" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_NavettesModel.FK_Client_Offre" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_NavettesModel.FK_Demande_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_NavettesModel.FK_Demande_Ligne" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_NavettesModel.FK_Demande_VilleArrivee" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_NavettesModel.FK_Demande_VilleDepart" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_NavettesModel.FK_Offre_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_NavettesModel.FK_Societe_Offre" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_NavettesModel.FK_VilleArrivee_Offre" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_NavettesModel.FK_VilleDepart_Offre" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Projet_Navette.Models.Offre>
+
+@{
+    ViewBag.Title = "Offres";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>
+            @Html.DisplayNameFor(model => model.heure_Depart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.heure_Arrivee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prix)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.date_Offre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_Depart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_Arrivee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nb_Abonnes_Voulus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nb_Abonnes_Atteints)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Autocar.description)
+        </th>
+        <th>
+            Ville Départ
+        </th>
+        <th>
+            Ville Arrivée
+        </th>
+        <th>Action</th>
+    </tr>
+    @{
+        int cmpt = 0;
+    }
+
+    @foreach (var item in Model)
+    {
+        cmpt++;
+<tr>
+    <td>@cmpt</td>
+    <td>
+        @Html.DisplayFor(modelItem => item.heure_Depart)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.heure_Arrivee)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.prix)
+    </td>
+    <td>
+        @item.date_Offre.ToString("dd/MM/yyyy")
+    </td>
+    <td>
+        @item.date_Depart.ToString("dd/MM/yyyy")
+    </td>
+    <td>
+        @item.date_Arrivee.ToString("dd/MM/yyyy")
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.nb_Abonnes_Voulus)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.nb_Abonnes_Atteints)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Autocar.description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Ville1.nom)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Ville.nom)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id_Offre }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id_Offre }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id_Offre }) |
+    </td>
+</tr>
+    }
+
+</table>

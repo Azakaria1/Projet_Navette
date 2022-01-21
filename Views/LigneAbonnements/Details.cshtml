@@ -1,0 +1,37 @@
+﻿@model Projet_Navette.Models.LigneAbonnement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LigneAbonnement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client)
+        </dt>
+        @{ 
+            var nomcomplet = Model.Client.nom + " " + Model.Client.prenom;
+
+        }
+        <dd>
+            @nomcomplet
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Offre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Offre.description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_LigneAbonnement }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

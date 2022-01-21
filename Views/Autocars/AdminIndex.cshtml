@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Projet_Navette.Models.Autocar>
+
+@{
+    ViewBag.Title = "AdminIndex";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Description
+        </th>
+        <th>
+            Marque
+        </th>
+        <th>
+            Model
+        </th>
+
+        <th width="200">
+            <div style="float:none">Image</div>
+        </th>
+        <th>
+            Action
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.marque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.model)
+            </td>
+
+            <td><img src="~/Images/@item.imagePath" alt="Alternate Text" /></td>
+
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.id_Autocar })            </td>
+        </tr>
+    }
+
+</table>

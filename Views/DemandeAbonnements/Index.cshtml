@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Projet_Navette.Models.DemandeAbonnement>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>
+            @Html.DisplayNameFor(model => model.heure_Depart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.heure_Arrivee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_Demande)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prix)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_Depart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_Arrivee)
+        </th>
+        <th>
+        Client     
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ville.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ville1.nom)
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    @{
+        int cmpt = 0;
+    }
+
+    @foreach (var item in Model)
+    {
+        cmpt++;
+        var nomcomplet = item.Client.nom + " "+  item.Client.prenom;
+
+<tr>
+    <td>@cmpt</td>
+    <td>
+        @Html.DisplayFor(modelItem => item.heure_Depart)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.heure_Arrivee)
+    </td>
+    <td>
+        @item.date_Demande.ToString("dd/MM/yyyy")
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.prix)
+    </td>
+    <td>
+        @item.date_Depart.ToString("dd/MM/yyyy")
+    </td>
+    <td>
+        @item.date_Arrivee.ToString("dd/MM/yyyy")
+    </td>
+    <td>
+@nomcomplet    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Ville.nom)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Ville1.nom)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id_Demande }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id_Demande }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id_Demande })
+    </td>
+</tr>
+    }
+
+</table>

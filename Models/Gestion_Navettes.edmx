@@ -1,0 +1,790 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Gestion_NavettesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="id_Admin" />
+          </Key>
+          <Property Name="id_Admin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="30" />
+          <Property Name="prenom" Type="varchar" MaxLength="30" />
+          <Property Name="date_ajout" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Autocar">
+          <Key>
+            <PropertyRef Name="id_Autocar" />
+          </Key>
+          <Property Name="id_Autocar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="imagePath" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="marque" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="model" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="id_Societe" Type="int" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id_Client" />
+          </Key>
+          <Property Name="id_Client" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="30" />
+          <Property Name="prenom" Type="varchar" MaxLength="30" />
+          <Property Name="date_ajout" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DemandeAbonnement">
+          <Key>
+            <PropertyRef Name="id_Demande" />
+          </Key>
+          <Property Name="id_Demande" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="heure_Depart" Type="time" Precision="7" Nullable="false" />
+          <Property Name="heure_Arrivee" Type="time" Precision="7" Nullable="false" />
+          <Property Name="date_Demande" Type="date" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="prix" Type="int" Nullable="false" />
+          <Property Name="date_Depart" Type="date" Nullable="false" />
+          <Property Name="date_Arrivee" Type="date" Nullable="false" />
+          <Property Name="id_Client" Type="int" Nullable="false" />
+          <Property Name="id_VilleDepart" Type="int" Nullable="false" />
+          <Property Name="id_VilleArrivee" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LigneAbonnement">
+          <Key>
+            <PropertyRef Name="id_LigneAbonnement" />
+          </Key>
+          <Property Name="id_LigneAbonnement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Client" Type="int" Nullable="false" />
+          <Property Name="id_Offre" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LigneDemande">
+          <Key>
+            <PropertyRef Name="id_LigneDemande" />
+          </Key>
+          <Property Name="id_LigneDemande" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Client" Type="int" Nullable="false" />
+          <Property Name="id_Demande" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Offre">
+          <Key>
+            <PropertyRef Name="id_Offre" />
+          </Key>
+          <Property Name="id_Offre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date_Offre" Type="date" Nullable="false" />
+          <Property Name="heure_Depart" Type="time" Precision="7" Nullable="false" />
+          <Property Name="heure_Arrivee" Type="time" Precision="7" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="prix" Type="numeric" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="date_Depart" Type="date" Nullable="false" />
+          <Property Name="date_Arrivee" Type="date" Nullable="false" />
+          <Property Name="nb_Abonnes_Voulus" Type="int" Nullable="false" />
+          <Property Name="nb_Abonnes_Atteints" Type="int" Nullable="false" />
+          <Property Name="id_Societe" Type="int" Nullable="false" />
+          <Property Name="id_VilleArrivee" Type="int" Nullable="false" />
+          <Property Name="id_VilleDepart" Type="int" Nullable="false" />
+          <Property Name="id_Autocar" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Societe">
+          <Key>
+            <PropertyRef Name="id_Societe" />
+          </Key>
+          <Property Name="id_Societe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="num_patente" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="telephone" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="addresse" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ville">
+          <Key>
+            <PropertyRef Name="id_Ville" />
+          </Key>
+          <Property Name="id_Ville" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Autocar_Offre">
+          <End Role="Autocar" Type="Self.Autocar" Multiplicity="1" />
+          <End Role="Offre" Type="Self.Offre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autocar">
+              <PropertyRef Name="id_Autocar" />
+            </Principal>
+            <Dependent Role="Offre">
+              <PropertyRef Name="id_Autocar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Autocar_Societe">
+          <End Role="Societe" Type="Self.Societe" Multiplicity="0..1" />
+          <End Role="Autocar" Type="Self.Autocar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Societe">
+              <PropertyRef Name="id_Societe" />
+            </Principal>
+            <Dependent Role="Autocar">
+              <PropertyRef Name="id_Societe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Ligne">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="LigneDemande" Type="Self.LigneDemande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id_Client" />
+            </Principal>
+            <Dependent Role="LigneDemande">
+              <PropertyRef Name="id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Offre">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="LigneAbonnement" Type="Self.LigneAbonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id_Client" />
+            </Principal>
+            <Dependent Role="LigneAbonnement">
+              <PropertyRef Name="id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demande_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="DemandeAbonnement" Type="Self.DemandeAbonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id_Client" />
+            </Principal>
+            <Dependent Role="DemandeAbonnement">
+              <PropertyRef Name="id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demande_Ligne">
+          <End Role="DemandeAbonnement" Type="Self.DemandeAbonnement" Multiplicity="1" />
+          <End Role="LigneDemande" Type="Self.LigneDemande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DemandeAbonnement">
+              <PropertyRef Name="id_Demande" />
+            </Principal>
+            <Dependent Role="LigneDemande">
+              <PropertyRef Name="id_Demande" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demande_VilleArrivee">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+          <End Role="DemandeAbonnement" Type="Self.DemandeAbonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="id_Ville" />
+            </Principal>
+            <Dependent Role="DemandeAbonnement">
+              <PropertyRef Name="id_VilleArrivee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demande_VilleDepart">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+          <End Role="DemandeAbonnement" Type="Self.DemandeAbonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="id_Ville" />
+            </Principal>
+            <Dependent Role="DemandeAbonnement">
+              <PropertyRef Name="id_VilleDepart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offre_Client">
+          <End Role="Offre" Type="Self.Offre" Multiplicity="1" />
+          <End Role="LigneAbonnement" Type="Self.LigneAbonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offre">
+              <PropertyRef Name="id_Offre" />
+            </Principal>
+            <Dependent Role="LigneAbonnement">
+              <PropertyRef Name="id_Offre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Societe_Offre">
+          <End Role="Societe" Type="Self.Societe" Multiplicity="1" />
+          <End Role="Offre" Type="Self.Offre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Societe">
+              <PropertyRef Name="id_Societe" />
+            </Principal>
+            <Dependent Role="Offre">
+              <PropertyRef Name="id_Societe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VilleArrivee_Offre">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+          <End Role="Offre" Type="Self.Offre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="id_Ville" />
+            </Principal>
+            <Dependent Role="Offre">
+              <PropertyRef Name="id_VilleArrivee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VilleDepart_Offre">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+          <End Role="Offre" Type="Self.Offre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="id_Ville" />
+            </Principal>
+            <Dependent Role="Offre">
+              <PropertyRef Name="id_VilleDepart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Gestion_NavettesModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Autocar" EntityType="Self.Autocar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DemandeAbonnement" EntityType="Self.DemandeAbonnement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LigneAbonnement" EntityType="Self.LigneAbonnement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LigneDemande" EntityType="Self.LigneDemande" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offre" EntityType="Self.Offre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Societe" EntityType="Self.Societe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ville" EntityType="Self.Ville" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Autocar_Offre" Association="Self.FK_Autocar_Offre">
+            <End Role="Autocar" EntitySet="Autocar" />
+            <End Role="Offre" EntitySet="Offre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Autocar_Societe" Association="Self.FK_Autocar_Societe">
+            <End Role="Societe" EntitySet="Societe" />
+            <End Role="Autocar" EntitySet="Autocar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Ligne" Association="Self.FK_Client_Ligne">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="LigneDemande" EntitySet="LigneDemande" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Offre" Association="Self.FK_Client_Offre">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="LigneAbonnement" EntitySet="LigneAbonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demande_Client" Association="Self.FK_Demande_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="DemandeAbonnement" EntitySet="DemandeAbonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demande_Ligne" Association="Self.FK_Demande_Ligne">
+            <End Role="DemandeAbonnement" EntitySet="DemandeAbonnement" />
+            <End Role="LigneDemande" EntitySet="LigneDemande" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demande_VilleArrivee" Association="Self.FK_Demande_VilleArrivee">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="DemandeAbonnement" EntitySet="DemandeAbonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demande_VilleDepart" Association="Self.FK_Demande_VilleDepart">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="DemandeAbonnement" EntitySet="DemandeAbonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offre_Client" Association="Self.FK_Offre_Client">
+            <End Role="Offre" EntitySet="Offre" />
+            <End Role="LigneAbonnement" EntitySet="LigneAbonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Societe_Offre" Association="Self.FK_Societe_Offre">
+            <End Role="Societe" EntitySet="Societe" />
+            <End Role="Offre" EntitySet="Offre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VilleArrivee_Offre" Association="Self.FK_VilleArrivee_Offre">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="Offre" EntitySet="Offre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VilleDepart_Offre" Association="Self.FK_VilleDepart_Offre">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="Offre" EntitySet="Offre" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Gestion_NavettesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="id_Admin" />
+          </Key>
+          <Property Name="id_Admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="prenom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="date_ajout" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Autocar">
+          <Key>
+            <PropertyRef Name="id_Autocar" />
+          </Key>
+          <Property Name="id_Autocar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imagePath" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="marque" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="model" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_Societe" Type="Int32" />
+          <NavigationProperty Name="Offre" Relationship="Self.FK_Autocar_Offre" FromRole="Autocar" ToRole="Offre" />
+          <NavigationProperty Name="Societe" Relationship="Self.FK_Autocar_Societe" FromRole="Autocar" ToRole="Societe" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id_Client" />
+          </Key>
+          <Property Name="id_Client" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="prenom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="date_ajout" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="LigneDemande" Relationship="Self.FK_Client_Ligne" FromRole="Client" ToRole="LigneDemande" />
+          <NavigationProperty Name="LigneAbonnement" Relationship="Self.FK_Client_Offre" FromRole="Client" ToRole="LigneAbonnement" />
+          <NavigationProperty Name="DemandeAbonnement" Relationship="Self.FK_Demande_Client" FromRole="Client" ToRole="DemandeAbonnement" />
+        </EntityType>
+        <EntityType Name="DemandeAbonnement">
+          <Key>
+            <PropertyRef Name="id_Demande" />
+          </Key>
+          <Property Name="id_Demande" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="heure_Depart" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="heure_Arrivee" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="date_Demande" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="description" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prix" Type="Int32" Nullable="false" />
+          <Property Name="date_Depart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="date_Arrivee" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_Client" Type="Int32" Nullable="false" />
+          <Property Name="id_VilleDepart" Type="Int32" Nullable="false" />
+          <Property Name="id_VilleArrivee" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Demande_Client" FromRole="DemandeAbonnement" ToRole="Client" />
+          <NavigationProperty Name="LigneDemande" Relationship="Self.FK_Demande_Ligne" FromRole="DemandeAbonnement" ToRole="LigneDemande" />
+          <NavigationProperty Name="Ville" Relationship="Self.FK_Demande_VilleArrivee" FromRole="DemandeAbonnement" ToRole="Ville" />
+          <NavigationProperty Name="Ville1" Relationship="Self.FK_Demande_VilleDepart" FromRole="DemandeAbonnement" ToRole="Ville" />
+        </EntityType>
+        <EntityType Name="LigneAbonnement">
+          <Key>
+            <PropertyRef Name="id_LigneAbonnement" />
+          </Key>
+          <Property Name="id_LigneAbonnement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Client" Type="Int32" Nullable="false" />
+          <Property Name="id_Offre" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Offre" FromRole="LigneAbonnement" ToRole="Client" />
+          <NavigationProperty Name="Offre" Relationship="Self.FK_Offre_Client" FromRole="LigneAbonnement" ToRole="Offre" />
+        </EntityType>
+        <EntityType Name="LigneDemande">
+          <Key>
+            <PropertyRef Name="id_LigneDemande" />
+          </Key>
+          <Property Name="id_LigneDemande" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Client" Type="Int32" Nullable="false" />
+          <Property Name="id_Demande" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Ligne" FromRole="LigneDemande" ToRole="Client" />
+          <NavigationProperty Name="DemandeAbonnement" Relationship="Self.FK_Demande_Ligne" FromRole="LigneDemande" ToRole="DemandeAbonnement" />
+        </EntityType>
+        <EntityType Name="Offre">
+          <Key>
+            <PropertyRef Name="id_Offre" />
+          </Key>
+          <Property Name="id_Offre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date_Offre" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="heure_Depart" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="heure_Arrivee" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="description" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prix" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="date_Depart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="date_Arrivee" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nb_Abonnes_Voulus" Type="Int32" Nullable="false" />
+          <Property Name="nb_Abonnes_Atteints" Type="Int32" Nullable="false" />
+          <Property Name="id_Societe" Type="Int32" Nullable="false" />
+          <Property Name="id_VilleArrivee" Type="Int32" Nullable="false" />
+          <Property Name="id_VilleDepart" Type="Int32" Nullable="false" />
+          <Property Name="id_Autocar" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Autocar" Relationship="Self.FK_Autocar_Offre" FromRole="Offre" ToRole="Autocar" />
+          <NavigationProperty Name="LigneAbonnement" Relationship="Self.FK_Offre_Client" FromRole="Offre" ToRole="LigneAbonnement" />
+          <NavigationProperty Name="Societe" Relationship="Self.FK_Societe_Offre" FromRole="Offre" ToRole="Societe" />
+          <NavigationProperty Name="Ville" Relationship="Self.FK_VilleArrivee_Offre" FromRole="Offre" ToRole="Ville" />
+          <NavigationProperty Name="Ville1" Relationship="Self.FK_VilleDepart_Offre" FromRole="Offre" ToRole="Ville" />
+        </EntityType>
+        <EntityType Name="Societe">
+          <Key>
+            <PropertyRef Name="id_Societe" />
+          </Key>
+          <Property Name="id_Societe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="num_patente" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telephone" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="addresse" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Autocar" Relationship="Self.FK_Autocar_Societe" FromRole="Societe" ToRole="Autocar" />
+          <NavigationProperty Name="Offre" Relationship="Self.FK_Societe_Offre" FromRole="Societe" ToRole="Offre" />
+        </EntityType>
+        <EntityType Name="Ville">
+          <Key>
+            <PropertyRef Name="id_Ville" />
+          </Key>
+          <Property Name="id_Ville" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DemandeAbonnement" Relationship="Self.FK_Demande_VilleArrivee" FromRole="Ville" ToRole="DemandeAbonnement" />
+          <NavigationProperty Name="DemandeAbonnement1" Relationship="Self.FK_Demande_VilleDepart" FromRole="Ville" ToRole="DemandeAbonnement" />
+          <NavigationProperty Name="Offre" Relationship="Self.FK_VilleArrivee_Offre" FromRole="Ville" ToRole="Offre" />
+          <NavigationProperty Name="Offre1" Relationship="Self.FK_VilleDepart_Offre" FromRole="Ville" ToRole="Offre" />
+        </EntityType>
+        <Association Name="FK_Autocar_Offre">
+          <End Role="Autocar" Type="Self.Autocar" Multiplicity="1" />
+          <End Role="Offre" Type="Self.Offre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autocar">
+              <PropertyRef Name="id_Autocar" />
+            </Principal>
+            <Dependent Role="Offre">
+              <PropertyRef Name="id_Autocar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Autocar_Societe">
+          <End Role="Societe" Type="Self.Societe" Multiplicity="0..1" />
+          <End Role="Autocar" Type="Self.Autocar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Societe">
+              <PropertyRef Name="id_Societe" />
+            </Principal>
+            <Dependent Role="Autocar">
+              <PropertyRef Name="id_Societe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Ligne">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="LigneDemande" Type="Self.LigneDemande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id_Client" />
+            </Principal>
+            <Dependent Role="LigneDemande">
+              <PropertyRef Name="id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Offre">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="LigneAbonnement" Type="Self.LigneAbonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id_Client" />
+            </Principal>
+            <Dependent Role="LigneAbonnement">
+              <PropertyRef Name="id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demande_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="DemandeAbonnement" Type="Self.DemandeAbonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id_Client" />
+            </Principal>
+            <Dependent Role="DemandeAbonnement">
+              <PropertyRef Name="id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demande_Ligne">
+          <End Role="DemandeAbonnement" Type="Self.DemandeAbonnement" Multiplicity="1" />
+          <End Role="LigneDemande" Type="Self.LigneDemande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DemandeAbonnement">
+              <PropertyRef Name="id_Demande" />
+            </Principal>
+            <Dependent Role="LigneDemande">
+              <PropertyRef Name="id_Demande" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demande_VilleArrivee">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+          <End Role="DemandeAbonnement" Type="Self.DemandeAbonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="id_Ville" />
+            </Principal>
+            <Dependent Role="DemandeAbonnement">
+              <PropertyRef Name="id_VilleArrivee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Demande_VilleDepart">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+          <End Role="DemandeAbonnement" Type="Self.DemandeAbonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="id_Ville" />
+            </Principal>
+            <Dependent Role="DemandeAbonnement">
+              <PropertyRef Name="id_VilleDepart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offre_Client">
+          <End Role="Offre" Type="Self.Offre" Multiplicity="1" />
+          <End Role="LigneAbonnement" Type="Self.LigneAbonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offre">
+              <PropertyRef Name="id_Offre" />
+            </Principal>
+            <Dependent Role="LigneAbonnement">
+              <PropertyRef Name="id_Offre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Societe_Offre">
+          <End Role="Societe" Type="Self.Societe" Multiplicity="1" />
+          <End Role="Offre" Type="Self.Offre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Societe">
+              <PropertyRef Name="id_Societe" />
+            </Principal>
+            <Dependent Role="Offre">
+              <PropertyRef Name="id_Societe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VilleArrivee_Offre">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+          <End Role="Offre" Type="Self.Offre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="id_Ville" />
+            </Principal>
+            <Dependent Role="Offre">
+              <PropertyRef Name="id_VilleArrivee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VilleDepart_Offre">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+          <End Role="Offre" Type="Self.Offre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="id_Ville" />
+            </Principal>
+            <Dependent Role="Offre">
+              <PropertyRef Name="id_VilleDepart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Gestion_NavettesEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Autocar" EntityType="Self.Autocar" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="DemandeAbonnement" EntityType="Self.DemandeAbonnement" />
+          <EntitySet Name="LigneAbonnement" EntityType="Self.LigneAbonnement" />
+          <EntitySet Name="LigneDemande" EntityType="Self.LigneDemande" />
+          <EntitySet Name="Offre" EntityType="Self.Offre" />
+          <EntitySet Name="Societe" EntityType="Self.Societe" />
+          <EntitySet Name="Ville" EntityType="Self.Ville" />
+          <AssociationSet Name="FK_Autocar_Offre" Association="Self.FK_Autocar_Offre">
+            <End Role="Autocar" EntitySet="Autocar" />
+            <End Role="Offre" EntitySet="Offre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Autocar_Societe" Association="Self.FK_Autocar_Societe">
+            <End Role="Societe" EntitySet="Societe" />
+            <End Role="Autocar" EntitySet="Autocar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Ligne" Association="Self.FK_Client_Ligne">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="LigneDemande" EntitySet="LigneDemande" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Offre" Association="Self.FK_Client_Offre">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="LigneAbonnement" EntitySet="LigneAbonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demande_Client" Association="Self.FK_Demande_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="DemandeAbonnement" EntitySet="DemandeAbonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demande_Ligne" Association="Self.FK_Demande_Ligne">
+            <End Role="DemandeAbonnement" EntitySet="DemandeAbonnement" />
+            <End Role="LigneDemande" EntitySet="LigneDemande" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demande_VilleArrivee" Association="Self.FK_Demande_VilleArrivee">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="DemandeAbonnement" EntitySet="DemandeAbonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Demande_VilleDepart" Association="Self.FK_Demande_VilleDepart">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="DemandeAbonnement" EntitySet="DemandeAbonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offre_Client" Association="Self.FK_Offre_Client">
+            <End Role="Offre" EntitySet="Offre" />
+            <End Role="LigneAbonnement" EntitySet="LigneAbonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Societe_Offre" Association="Self.FK_Societe_Offre">
+            <End Role="Societe" EntitySet="Societe" />
+            <End Role="Offre" EntitySet="Offre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VilleArrivee_Offre" Association="Self.FK_VilleArrivee_Offre">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="Offre" EntitySet="Offre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VilleDepart_Offre" Association="Self.FK_VilleDepart_Offre">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="Offre" EntitySet="Offre" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Gestion_NavettesModelStoreContainer" CdmEntityContainer="Gestion_NavettesEntities1">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="Gestion_NavettesModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="id_Admin" ColumnName="id_Admin" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="date_ajout" ColumnName="date_ajout" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Autocar">
+            <EntityTypeMapping TypeName="Gestion_NavettesModel.Autocar">
+              <MappingFragment StoreEntitySet="Autocar">
+                <ScalarProperty Name="id_Autocar" ColumnName="id_Autocar" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="marque" ColumnName="marque" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="id_Societe" ColumnName="id_Societe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="Gestion_NavettesModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="id_Client" ColumnName="id_Client" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="date_ajout" ColumnName="date_ajout" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DemandeAbonnement">
+            <EntityTypeMapping TypeName="Gestion_NavettesModel.DemandeAbonnement">
+              <MappingFragment StoreEntitySet="DemandeAbonnement">
+                <ScalarProperty Name="id_Demande" ColumnName="id_Demande" />
+                <ScalarProperty Name="heure_Depart" ColumnName="heure_Depart" />
+                <ScalarProperty Name="heure_Arrivee" ColumnName="heure_Arrivee" />
+                <ScalarProperty Name="date_Demande" ColumnName="date_Demande" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="prix" ColumnName="prix" />
+                <ScalarProperty Name="date_Depart" ColumnName="date_Depart" />
+                <ScalarProperty Name="date_Arrivee" ColumnName="date_Arrivee" />
+                <ScalarProperty Name="id_Client" ColumnName="id_Client" />
+                <ScalarProperty Name="id_VilleDepart" ColumnName="id_VilleDepart" />
+                <ScalarProperty Name="id_VilleArrivee" ColumnName="id_VilleArrivee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LigneAbonnement">
+            <EntityTypeMapping TypeName="Gestion_NavettesModel.LigneAbonnement">
+              <MappingFragment StoreEntitySet="LigneAbonnement">
+                <ScalarProperty Name="id_LigneAbonnement" ColumnName="id_LigneAbonnement" />
+                <ScalarProperty Name="id_Client" ColumnName="id_Client" />
+                <ScalarProperty Name="id_Offre" ColumnName="id_Offre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LigneDemande">
+            <EntityTypeMapping TypeName="Gestion_NavettesModel.LigneDemande">
+              <MappingFragment StoreEntitySet="LigneDemande">
+                <ScalarProperty Name="id_LigneDemande" ColumnName="id_LigneDemande" />
+                <ScalarProperty Name="id_Client" ColumnName="id_Client" />
+                <ScalarProperty Name="id_Demande" ColumnName="id_Demande" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offre">
+            <EntityTypeMapping TypeName="Gestion_NavettesModel.Offre">
+              <MappingFragment StoreEntitySet="Offre">
+                <ScalarProperty Name="id_Offre" ColumnName="id_Offre" />
+                <ScalarProperty Name="date_Offre" ColumnName="date_Offre" />
+                <ScalarProperty Name="heure_Depart" ColumnName="heure_Depart" />
+                <ScalarProperty Name="heure_Arrivee" ColumnName="heure_Arrivee" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="prix" ColumnName="prix" />
+                <ScalarProperty Name="date_Depart" ColumnName="date_Depart" />
+                <ScalarProperty Name="date_Arrivee" ColumnName="date_Arrivee" />
+                <ScalarProperty Name="nb_Abonnes_Voulus" ColumnName="nb_Abonnes_Voulus" />
+                <ScalarProperty Name="nb_Abonnes_Atteints" ColumnName="nb_Abonnes_Atteints" />
+                <ScalarProperty Name="id_Societe" ColumnName="id_Societe" />
+                <ScalarProperty Name="id_VilleArrivee" ColumnName="id_VilleArrivee" />
+                <ScalarProperty Name="id_VilleDepart" ColumnName="id_VilleDepart" />
+                <ScalarProperty Name="id_Autocar" ColumnName="id_Autocar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Societe">
+            <EntityTypeMapping TypeName="Gestion_NavettesModel.Societe">
+              <MappingFragment StoreEntitySet="Societe">
+                <ScalarProperty Name="id_Societe" ColumnName="id_Societe" />
+                <ScalarProperty Name="num_patente" ColumnName="num_patente" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="addresse" ColumnName="addresse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ville">
+            <EntityTypeMapping TypeName="Gestion_NavettesModel.Ville">
+              <MappingFragment StoreEntitySet="Ville">
+                <ScalarProperty Name="id_Ville" ColumnName="id_Ville" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
